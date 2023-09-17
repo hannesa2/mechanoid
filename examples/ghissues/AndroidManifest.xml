@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.robotoworks.example.ghissues">
-
-    <uses-permission android:name="android.permission.INTERNET"/>
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name="GithubIssuesApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light"
-        android:name="GithubIssuesApplication"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name="com.robotoworks.example.ghissues.ui.MainActivity"
-            android:label="@string/app_name"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service
-            android:exported="false"
-            android:name=".ops.GithubService"/>
         <provider
-            android:authorities="com.robotoworks.example.ghissues.db.githubdb"
             android:name=".db.GithubDBContentProvider"
-            android:exported="false"/>
+            android:authorities="com.robotoworks.example.ghissues.db.githubdb"
+            android:exported="false" />
+        <service
+            android:name=".ops.GithubService"
+            android:exported="false" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

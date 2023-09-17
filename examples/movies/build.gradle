@@ -23,7 +23,6 @@ android {
         targetSdkVersion defaultTargetSdkVersion
     }
 
-
     buildTypes {
         release {
             minifyEnabled true
@@ -48,7 +47,7 @@ android {
     lint {
         abortOnError false
     }
-
+    namespace "com.robotoworks.example.movies"
 }
 
 dependencies {

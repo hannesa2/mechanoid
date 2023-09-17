@@ -48,7 +48,7 @@ android {
     lint {
         abortOnError false
     }
-
+    namespace "com.robotoworks.example.ghissues"
 }
 
 dependencies {
