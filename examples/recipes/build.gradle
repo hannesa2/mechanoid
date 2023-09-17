@@ -23,9 +23,6 @@ android {
         targetSdkVersion defaultTargetSdkVersion
     }
 
-    lintOptions {
-        abortOnError false
-    }
 
     buildTypes {
         release {
@@ -41,10 +38,17 @@ android {
             aidl.srcDirs = ['src']
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
-            jni.srcDirs = [] //disable automatic ndk-build
+            //disable automatic ndk-build
         }
     }
-
+    buildFeatures {
+        renderScript true
+        aidl true
+    }
+    lint {
+        abortOnError false
+    }
+    namespace "com.robotoworks.example.recipes"
 }
 
 dependencies {

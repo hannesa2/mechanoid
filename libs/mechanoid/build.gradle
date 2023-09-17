@@ -22,26 +22,35 @@ android {
         minSdkVersion defaultMinSdkVersion
         targetSdkVersion defaultTargetSdkVersion
 
-        versionName version + "." + getGitCommitCount() + "-" + getLatestGitHash()
         targetSdkVersion defaultTargetSdkVersion
 
         consumerProguardFiles 'proguard-mechanoid.txt'
     }
 
-    lintOptions { abortOnError false }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFile('proguard-sdk.pro')
+        }
+    }
+    namespace 'info.hannes.mechanoid'
+    lint {
+        abortOnError false
+    }
 }
 
 dependencies {
     implementation "androidx.legacy:legacy-support-v4:$defaultAndoidXVersion"
     implementation "androidx.appcompat:appcompat:1.4.2"
 }
-
-project.afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-            }
-        }
-    }
-}
+//
+//publishing {
+//    publications {
+//        release(MavenPublication) {
+//            afterEvaluate {
+//                from components.release
+//            }
+//        }
+//    }
+//}
