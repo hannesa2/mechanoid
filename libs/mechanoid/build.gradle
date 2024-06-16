@@ -3,30 +3,15 @@ plugins {
     id 'maven-publish'
 }
 
-static def getLatestGitHash() {
-    def process = "git rev-parse --short HEAD".execute()
-    return process.text.toString().trim()
-}
-
-static def getGitCommitCount() {
-    def process = "git rev-list HEAD --count".execute()
-    return process.text.toInteger()
-}
-
-def version = '3.0.1'
-
 android {
-    compileSdkVersion defaultCompileSdkVersion
-
+    namespace 'info.hannes.mechanoid'
     defaultConfig {
         minSdkVersion defaultMinSdkVersion
-        targetSdkVersion defaultTargetSdkVersion
-
+        compileSdk defaultCompileSdkVersion
         targetSdkVersion defaultTargetSdkVersion
 
         consumerProguardFiles 'proguard-mechanoid.txt'
     }
-
 
     buildTypes {
         release {
@@ -34,7 +19,6 @@ android {
             consumerProguardFile('proguard-sdk.pro')
         }
     }
-    namespace 'info.hannes.mechanoid'
     lint {
         abortOnError false
     }
