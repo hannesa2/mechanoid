@@ -13,16 +13,14 @@ static def getGitCommitCount() {
 def version = '3.0.0'
 
 android {
-
-    compileSdkVersion defaultCompileSdkVersion
-
+    namespace "com.robotoworks.example.recipes"
     defaultConfig {
         versionCode getGitCommitCount()
         minSdkVersion defaultMinSdkVersion
+        compileSdk defaultCompileSdkVersion
         versionName version + "." + getGitCommitCount() + "-" + getLatestGitHash()
         targetSdkVersion defaultTargetSdkVersion
     }
-
 
     buildTypes {
         release {
@@ -48,7 +46,6 @@ android {
     lint {
         abortOnError false
     }
-    namespace "com.robotoworks.example.recipes"
 }
 
 dependencies {
