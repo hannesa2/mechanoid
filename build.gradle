@@ -10,9 +10,9 @@ buildscript {
 }
 
 ext {
-    defaultCompileSdkVersion = 31
+    defaultCompileSdkVersion = 34
     defaultMinSdkVersion = 16
-    defaultTargetSdkVersion = 31
+    defaultTargetSdkVersion = 34
     defaultAndoidXVersion = "1.0.0"
 }
 
