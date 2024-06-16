@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 static def getLatestGitHash() {
     def process = "git rev-parse --short HEAD".execute()
@@ -46,10 +47,14 @@ android {
     lint {
         abortOnError false
     }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
     implementation project(':libs:mechanoid')
     implementation "androidx.legacy:legacy-support-v4:$defaultAndoidXVersion"
     implementation "androidx.appcompat:appcompat:1.4.2"
+    implementation 'androidx.core:core-ktx:1.13.1'
 }
