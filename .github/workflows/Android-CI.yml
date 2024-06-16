@@ -13,11 +13,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: set up JDK 11
+      - name: set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: "adopt"
-          java-version: 11
+          java-version: 17
       - uses: gradle/actions/wrapper-validation@v3
       - name: Build with Gradle
         run: ./gradlew build
