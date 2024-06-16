@@ -21,3 +21,5 @@ jobs:
       - uses: gradle/actions/wrapper-validation@v3
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Publish test
+        run: ./gradlew :libs:mechanoid:build :libs:mechanoid:publishToMavenLocal -x :libs:mechanoid:test
