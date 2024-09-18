@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'maven-publish'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -22,11 +23,15 @@ android {
     lint {
         abortOnError false
     }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
     implementation "androidx.legacy:legacy-support-v4:$defaultAndoidXVersion"
     implementation "androidx.appcompat:appcompat:1.4.2"
+    implementation 'androidx.core:core-ktx:1.13.1'
 }
 
 publishing {
