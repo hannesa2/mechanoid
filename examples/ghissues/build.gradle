@@ -57,5 +57,5 @@ dependencies {
     implementation project(':libs:mechanoid')
     implementation "androidx.legacy:legacy-support-v4:$defaultAndoidXVersion"
     implementation "androidx.appcompat:appcompat:1.7.0"
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.core:core-ktx:1.15.0'
 }
