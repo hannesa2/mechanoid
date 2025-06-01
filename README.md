@@ -13,14 +13,14 @@ code and have to fix some issues. Unfortunatelly the original maintainer seams t
 
 This is the motivation for this fork  
 
-
+https://developer.android.com/training/data-storage/room
 Mechanoid DB
 ------------
-Here Room from Google is a modern replacement and there is [secure Room](https://github.com/commonsguy/cwac-saferoom) as well 
+Here [Room](https://developer.android.com/training/data-storage/room) from Google is a modern replacement. -Deprecated-
 
 Mechanoid Net
 -------------
-Retrofit with Rx is a good replacement
+Retrofit with Rx is a good replacement -Deprecated-
 
 Mechanoid Ops
 -------------
@@ -28,8 +28,8 @@ This is the part why I maintain this repo because I've no good replacement found
 
 Mechanoid Prefs
 ---------------
-Here I use secure [DBPReferences](https://github.com/hannesa2/DbPreferences) as replacement
-
+-Deprecated-
+ 
 Installation
 ============
 Repository available on https://jitpack.io
@@ -46,7 +46,7 @@ allprojects {
 dependencies {
     implementation 'com.github.hannesa2:mechanoid:3.1' // Support Lib
     // or
-    implementation 'com.github.hannesa2:mechanoid:4.0' // Android X
+    implementation 'com.github.hannesa2:mechanoid:4.5' // Android X
 }
 
 ```
