@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <application
         android:name="com.robotoworks.example.movies.MoviesApplication"
@@ -28,6 +29,7 @@
 
         <service
             android:name=".ops.MoviesService"
+            android:foregroundServiceType="dataSync"
             android:exported="false" />
     </application>
 
