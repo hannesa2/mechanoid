@@ -1,4 +1,4 @@
-include ':libs:mechanoid'
+include ':mechanoid'
 include ':examples:ghissues'
 include ':examples:movies'
 include ':examples:prefs'

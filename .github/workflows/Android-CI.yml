@@ -22,4 +22,4 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Publish test
-        run: ./gradlew :libs:mechanoid:build :libs:mechanoid:publishToMavenLocal -x :libs:mechanoid:test
+        run: ./gradlew :mechanoid:build :mechanoid:publishToMavenLocal -x :mechanoid:test

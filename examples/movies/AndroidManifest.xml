@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.robotoworks.example.movies.MoviesApplication"
         android:allowBackup="true"
@@ -28,7 +30,5 @@
             android:name=".ops.MoviesService"
             android:exported="false" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
