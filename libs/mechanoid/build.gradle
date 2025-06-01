@@ -7,9 +7,9 @@ plugins {
 android {
     namespace 'info.hannes.mechanoid'
     defaultConfig {
-        minSdkVersion defaultMinSdkVersion
-        compileSdk defaultCompileSdkVersion
-        targetSdkVersion defaultTargetSdkVersion
+        minSdkVersion 21
+        compileSdk 35
+        targetSdkVersion 35
 
         consumerProguardFiles 'proguard-mechanoid.txt'
     }
@@ -26,12 +26,15 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
-    implementation "androidx.legacy:legacy-support-v4:$defaultAndoidXVersion"
     implementation "androidx.appcompat:appcompat:1.7.0"
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.core:core-ktx:1.16.0'
 }
 
 publishing {
