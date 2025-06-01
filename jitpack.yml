@@ -1,4 +1,4 @@
 jdk:
  - openjdk17
 install:
- - ./gradlew :libs:mechanoid:build :libs:mechanoid:publishToMavenLocal -x :libs:mechanoid:test
+ - ./gradlew :mechanoid:build :mechanoid:publishToMavenLocal -x :mechanoid:test
