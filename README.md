@@ -13,7 +13,6 @@ code and have to fix some issues. Unfortunatelly the original maintainer seams t
 
 This is the motivation for this fork  
 
-https://developer.android.com/training/data-storage/room
 Mechanoid DB
 ------------
 Here [Room](https://developer.android.com/training/data-storage/room) from Google is a modern replacement. -Deprecated-
