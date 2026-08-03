@@ -22,16 +22,13 @@ public class MainActivity extends FragmentActivity {
     public void onExampleClick(View v) {
         String fragName = null;
 
-        switch (v.getId()) {
-            case R.id.button_recipes_simple:
-                fragName = RecipeListFragment.class.getName();
-                break;
-            case R.id.button_recipes_with_author:
-                fragName = RecipesWithAuthorListFragment.class.getName();
-                break;
-            case R.id.button_recipes_and_ingredients:
-                fragName = RecipesAndIngredientsListFragment.class.getName();
-                break;
+        int id = v.getId();
+        if (id == R.id.button_recipes_simple) {
+            fragName = RecipeListFragment.class.getName();
+        } else if (id == R.id.button_recipes_with_author) {
+            fragName = RecipesWithAuthorListFragment.class.getName();
+        } else if (id == R.id.button_recipes_and_ingredients) {
+            fragName = RecipesAndIngredientsListFragment.class.getName();
         }
 
         getSupportFragmentManager()

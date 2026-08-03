@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.jetbrains.kotlin.android'
 
 static def getLatestGitHash() {
     def process = "git rev-parse --short HEAD".execute()
@@ -46,9 +45,6 @@ android {
     }
     lint {
         abortOnError false
-    }
-    kotlinOptions {
-        jvmTarget = '17'
     }
 }
 
