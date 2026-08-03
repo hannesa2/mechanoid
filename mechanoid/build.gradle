@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'maven-publish'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -21,6 +22,9 @@ android {
     }
     lint {
         abortOnError false
+    }
+    kotlinOptions {
+        jvmTarget = '17'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
