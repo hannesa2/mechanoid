@@ -22,10 +22,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ServiceInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.robotoworks.mechanoid.Mechanoid;
@@ -303,7 +305,17 @@ public class OperationServiceBridge {
             mPausedRequests.put(id, clonedIntent);
         } else {
             mPendingRequests.put(id, clonedIntent);
-            Mechanoid.startService(clonedIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                try {
+                    Mechanoid.startService(clonedIntent);
+                } catch (IllegalStateException e) {
+                    Log.w("OperationServiceBridge", "execute: foreground service not allowed, dropping request " + id);
+                    mPendingRequests.delete(id);
+                    return -1;
+                }
+            } else {
+                Mechanoid.startService(clonedIntent);
+            }
         }
 
         return id;
@@ -335,7 +347,17 @@ public class OperationServiceBridge {
             mPausedRequests.put(id, batchIntent);
         } else {
             mPendingRequests.put(id, batchIntent);
-            Mechanoid.startService(batchIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                try {
+                    Mechanoid.startService(batchIntent);
+                } catch (IllegalStateException e) {
+                    Log.w("OperationServiceBridge", "executeBatch: foreground service not allowed, dropping request " + id);
+                    mPendingRequests.delete(id);
+                    return -1;
+                }
+            } else {
+                Mechanoid.startService(batchIntent);
+            }
         }
 
         return id;
@@ -356,10 +378,20 @@ public class OperationServiceBridge {
 
             for (int i = 0; i < mPausedRequests.size(); i++) {
                 Intent request = mPausedRequests.valueAt(i);
+                int pausedId = mPausedRequests.keyAt(i);
 
-                mPendingRequests.put(mPausedRequests.keyAt(i), request);
+                mPendingRequests.put(pausedId, request);
 
-                Mechanoid.startService(request);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    try {
+                        Mechanoid.startService(request);
+                    } catch (IllegalStateException e) {
+                        Log.w("OperationServiceBridge", "pause/resume: foreground service not allowed, dropping request " + pausedId);
+                        mPendingRequests.delete(pausedId);
+                    }
+                } else {
+                    Mechanoid.startService(request);
+                }
             }
 
             mPausedRequests.clear();

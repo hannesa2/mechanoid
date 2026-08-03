@@ -114,7 +114,19 @@ public abstract class OperationService extends Service {
                         .build();
                 //  .setColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
-                startForeground(1, notification);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    try {
+                        startForeground(1, notification);
+                    } catch (IllegalStateException e) {
+                        // ForegroundServiceStartNotAllowedException: app is in the background and
+                        // the OS has rejected this foreground service type (e.g. dataSync from BOOT_COMPLETED).
+                        Log.w(mLogTag, "startForeground not allowed, stopping service: " + e.getMessage());
+                        stopSelf(startId);
+                        return START_NOT_STICKY;
+                    }
+                } else {
+                    startForeground(1, notification);
+                }
             }
 
             intent.putExtra(EXTRA_START_ID, startId);

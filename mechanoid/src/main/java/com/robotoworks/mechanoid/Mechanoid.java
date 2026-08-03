@@ -19,6 +19,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import com.robotoworks.mechanoid.db.SQuery;
 import com.robotoworks.mechanoid.ops.OpsInitializer;
@@ -47,7 +48,19 @@ public class Mechanoid {
 
     public static void startService(Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            get().mApplicationContext.startForegroundService(intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                try {
+                    get().mApplicationContext.startForegroundService(intent);
+                } catch (IllegalStateException e) {
+                    // ForegroundServiceStartNotAllowedException (API 31+): app is in the background
+                    // and not allowed to start a foreground service. Let it propagate so callers
+                    // can clean up any pending-request bookkeeping.
+                    Log.w("Mechanoid", "startForegroundService not allowed: " + e.getMessage());
+                    throw e;
+                }
+            } else {
+                get().mApplicationContext.startForegroundService(intent);
+            }
         } else {
             get().mApplicationContext.startService(intent);
         }
